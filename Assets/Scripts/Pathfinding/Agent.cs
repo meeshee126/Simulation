@@ -24,24 +24,22 @@ public class Agent : MonoBehaviour
     void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
-        {
-            if (GetClickedGameobject().name == "YellowSpawner" ||
+        {   
+            if (GetClickedGameobject() == null ||
+                GetClickedGameobject().name == "YellowSpawner" ||
                 GetClickedGameobject().name == "BlueSpawner" ||
                 GetClickedGameobject().name == "RedSpawner")
                 return;
 
 
-            Vector3 clickedPosition = GetClickedPosition();
-            if (clickedPosition == Vector3.zero)
-            {
+            if (GetClickedPosition() == Vector3.zero)        
                 return;
-            }
-            Debug.Log(clickedPosition);
+            
 
-            m_agent.SetDestination(clickedPosition);
+            m_agent.SetDestination(GetClickedPosition());
         }
 
-        if(Input.GetMouseButtonDown(1) && GetClickedGameobject() == this.gameObject)
+        if(Input.GetMouseButton(1) && GetClickedGameobject() == this.gameObject)
         {
             DestroyAgent();
         }
@@ -51,7 +49,6 @@ public class Agent : MonoBehaviour
     {
         Destroy(this.gameObject);
         Spawner.m_agentCount--;
-        Debug.Log(Spawner.m_agentCount);
     }
 
     Vector3 GetClickedPosition()

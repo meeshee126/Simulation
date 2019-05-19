@@ -27,13 +27,13 @@ public class Spawner : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject clickedObject = GetClickedSpawner();
+            if (GetClickedSpawner() == null)
+                return;
 
-            if(clickedObject.name == this.gameObject.name)
+            if(GetClickedSpawner().name == this.gameObject.name)
             {
                 SpawnEnemy();
                 m_agentCount++;
-                Debug.Log(m_agentCount);
             }
         }
     }

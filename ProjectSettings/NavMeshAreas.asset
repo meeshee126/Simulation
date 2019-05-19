@@ -11,8 +11,6 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: Tunnel
-    cost: 1
   - name: 
     cost: 1
   - name: 
@@ -25,7 +23,7 @@ NavMeshProjectSettings:
     cost: 1
   - name: 
     cost: 1
-  - name: 
+  - name: BluePath
     cost: 1
   - name: 
     cost: 1
@@ -35,7 +33,7 @@ NavMeshProjectSettings:
     cost: 1
   - name: 
     cost: 1
-  - name: 
+  - name: YellowPath
     cost: 1
   - name: 
     cost: 1
@@ -44,6 +42,8 @@ NavMeshProjectSettings:
   - name: 
     cost: 1
   - name: 
+    cost: 1
+  - name: RedPath
     cost: 1
   - name: 
     cost: 1
