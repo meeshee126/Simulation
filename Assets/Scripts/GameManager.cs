@@ -4,20 +4,33 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PathfindingManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public Text m_uiAgentCounter;
 
+    
     public GameObject m_uiPauseMenu;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
+        if (SceneManager.GetActiveScene().name == "Pathfinding")
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (SceneManager.GetActiveScene().name == "Environment")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void Update()
     {
-        AgentCounter();
+
+        if (SceneManager.GetActiveScene().name == "Pathfinding")
+        {
+            AgentCounter();
+        }
+
         InGameMenu();
     }
 
@@ -38,7 +51,7 @@ public class PathfindingManager : MonoBehaviour
     void InGameMenu()
     {
         // restarts simulation
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().name == "Pathfinding")
         {
             SceneManager.LoadScene("Pathfinding");
         }
@@ -57,6 +70,12 @@ public class PathfindingManager : MonoBehaviour
         // if pause Menu is not active
         if (m_uiPauseMenu.activeInHierarchy == false)
         {
+            if (SceneManager.GetActiveScene().name == "Environment")
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraMouseLook>().enabled = false;
+                Cursor.lockState = CursorLockMode.None;
+            }
+
             // pause Menu is setting active
             m_uiPauseMenu.gameObject.SetActive(true);
 
@@ -67,12 +86,23 @@ public class PathfindingManager : MonoBehaviour
         // if pause menu is active after pressing "escape" button
         else
         {
+            if (SceneManager.GetActiveScene().name == "Environment")
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraMouseLook>().enabled = true;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
             // pause menu is setting inactive
             m_uiPauseMenu.gameObject.SetActive(false);
 
             // enable enviroment physics
             Time.timeScale = 1;
         }
+    }
+
+    public void ButtonStartGame()
+    {
+        SceneManager.LoadScene("Environment");
     }
 
     public void ButtonResumeGame()

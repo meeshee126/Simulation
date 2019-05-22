@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StateTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_uiStateText;
+    private Text m_uiStateText;
+
+    private void Start()
+    {
+        m_uiStateText = GameObject.Find("TextSwitchState").GetComponent<Text>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            m_uiStateText.SetActive(true);
+            m_uiStateText.enabled = true;
         }
     }
 
@@ -19,7 +24,7 @@ public class StateTrigger : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            m_uiStateText.SetActive(false);
+            m_uiStateText.enabled = false ;
         }
     }
 }
