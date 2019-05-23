@@ -5,40 +5,36 @@ using UnityEngine.AI;
 
 public class Agent : MonoBehaviour
 {
-    Camera m_camera;
+    private Camera m_camera;
 
-    NavMeshAgent m_agent;
-
-    Rigidbody m_rb;
-
-    float m_timer;
+    private NavMeshAgent m_agent;
 
     void Start()
     {
         m_camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         m_agent = this.gameObject.GetComponent<NavMeshAgent>();
-        m_rb = GetComponent<Rigidbody>();
-        m_timer = 0f;
     }
 
     void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
         {   
+            // when clicked on spawner or no gameObject, don't move to this position
             if (GetClickedGameobject() == null ||
                 GetClickedGameobject().name == "YellowSpawner" ||
                 GetClickedGameobject().name == "BlueSpawner" ||
                 GetClickedGameobject().name == "RedSpawner")
                 return;
 
-
+            // check if clicked on empty space, don't move to this position
             if (GetClickedPosition() == Vector3.zero)        
                 return;
             
-
+            // move agent to clicked position
             m_agent.SetDestination(GetClickedPosition());
         }
 
+        // if right mouse click on agent, destroy it
         if(Input.GetMouseButton(1) && GetClickedGameobject() == this.gameObject)
         {
             DestroyAgent();
@@ -48,9 +44,13 @@ public class Agent : MonoBehaviour
     void DestroyAgent()
     {
         Destroy(this.gameObject);
-        Spawner.m_agentCount--;
+        AgentSpawner.m_agentCount--;
     }
 
+    /// <summary>
+    /// function for get clicked mouse position
+    /// </summary>
+    /// <returns></returns>
     Vector3 GetClickedPosition()
     {
         RaycastHit hit;
@@ -65,6 +65,10 @@ public class Agent : MonoBehaviour
         return Vector3.zero;
     }
 
+    /// <summary>
+    /// function for get clicked gameObject
+    /// </summary>
+    /// <returns></returns>
     GameObject GetClickedGameobject()
     {
         RaycastHit hit;

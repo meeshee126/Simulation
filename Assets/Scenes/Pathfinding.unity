@@ -217,6 +217,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_uiAgentCounter: {fileID: 8373935214152373133}
   m_uiPauseMenu: {fileID: 5266725211909722011}
+  m_rain: {fileID: 0}
+  m_rainFall: {fileID: 0}
+  m_rainExplosion: {fileID: 0}
+  m_rainMist: {fileID: 0}
 --- !u!4 &1013684554
 Transform:
   m_ObjectHideFlags: 0
@@ -471,6 +475,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760455807285055739, guid: 7399d5b80d75ec84f815f18bfb5d79de,
+        type: 3}
+      propertyPath: m_size.x
+      value: 8.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 760455807107715484, guid: 7399d5b80d75ec84f815f18bfb5d79de,
+        type: 3}
+      propertyPath: m_size.x
+      value: 8.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 760455808087950239, guid: 7399d5b80d75ec84f815f18bfb5d79de,
+        type: 3}
+      propertyPath: m_size.x
+      value: 8.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7399d5b80d75ec84f815f18bfb5d79de, type: 3}

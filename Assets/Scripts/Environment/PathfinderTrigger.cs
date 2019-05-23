@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class PathfinderTrigger : MonoBehaviour
 { 
-    public GameObject m_uiStartPathfinding;
+    [SerializeField]
+    GameObject m_uiStartPathfinding;
 
     private void OnTriggerStay(Collider other)
     {
+        // activate ui text
+
         if (other.gameObject.name == "Player")
         {
             m_uiStartPathfinding.gameObject.SetActive(true);
 
+            // starts pathfinding scene
             if (Input.GetKeyDown(KeyCode.E))
             {
                 SceneManager.LoadScene("Pathfinding");
@@ -22,10 +26,11 @@ public class PathfinderTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // deactivate ui text
+
         if (other.gameObject.name == "Player")
         {
             m_uiStartPathfinding.gameObject.SetActive(false);
         }
     }
-
 }

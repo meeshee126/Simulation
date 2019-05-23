@@ -8,25 +8,23 @@ public class EntitySpawner : MonoBehaviour
     GameObject m_entity;
 
     [SerializeField]
-    int m_entitys;
+    int m_entityAmount;
 
     [SerializeField]
     Vector3 m_size;
 
     void Start()
     {
-        for (int i = 0; i < m_entitys; i++)
+        // spawns a certain number of enitys
+        for (int i = 0; i < m_entityAmount; i++)
         {
+            // random position on a setted spawn area
             Vector3 spawnPosition = this.transform.position + new Vector3(Random.Range(-m_size.x / 2, m_size.x / 2),
                                                                           Random.Range(-m_size.y / 2, m_size.y / 2),
                                                                           Random.Range(-m_size.z / 2, m_size.z / 2));
-
+            // spawn entity
             Instantiate(m_entity, spawnPosition, Quaternion.identity);
         }
-    }
-    void Update()
-    {
-        
     }
 
     private void OnDrawGizmosSelected()
